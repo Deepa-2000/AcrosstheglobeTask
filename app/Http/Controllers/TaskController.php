@@ -4,30 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
 
 
-    // public function checkApikey($apikey){
-        // $key="helloatg";
-        // if ($apikey==$key) {
-            // return true;
-        // }else {
-            // return false;
-        // }
-    // }
-
     public function addtask($task,$user_id){
-        // if (!$this->checkApikey($key->header('api_key'))) {
-            // $data=[
-                // 'status'=> 200,
-                // 'message'=> "Project Unauthorized",
-// 
-            // ];
-            // return response()->json($data);
-        // }
         $data=User::where('id', $user_id )->exists();
         if ($data) {
             $user= new Task;

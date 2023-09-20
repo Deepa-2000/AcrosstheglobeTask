@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,8 +62,16 @@ class UserController extends Controller
             'password'=>Hash::make($data['password'])
         ]);
     }
-    public function dashboard(){        
-        return view('dashboard');
+    public function dashboard(){
+        $uid=Auth::user()->id;
+        $data=Task::where('user_id',$uid)->get();
+        // print_r($data); exit;
+        return view('dashboard',compact('data'));
+       
+        // return view('dashboard');
+    }
+    public function addtask(){        
+        return view('addtask');
     }
     public function logout(){
         Session::flush();
